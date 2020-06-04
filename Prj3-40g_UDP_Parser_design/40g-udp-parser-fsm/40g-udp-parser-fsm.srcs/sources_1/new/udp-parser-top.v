@@ -70,7 +70,7 @@ module udp_parser_top(
                out_debug2 <= output_buffer;
                if(output_waiting) begin
                 out_tdata <= output_buffer;
-                output_waiting = 0;
+                output_waiting <= 0;
                end
                
                 
