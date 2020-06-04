@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/UDP-parser-v0.1/UDP-parser-v0.1.srcs/sources_1/new/udp.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module udpparser
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/UDP-parser-v0.1/UDP-parser-v0.1.srcs/sim_1/new/testb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module testb

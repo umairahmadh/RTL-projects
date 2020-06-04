@@ -1,0 +1,15 @@
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: D:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 55da28146046461b9022db087ac07469 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot testb_behav xil_defaultlib.testb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/UDP-parser-v0.1/UDP-parser-v0.1.srcs/sources_1/new/udp.v" Line 2. Module udpparser doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.udpparser
+Compiling module xil_defaultlib.testb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot testb_behav

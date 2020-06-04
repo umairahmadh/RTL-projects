@@ -1,0 +1,7 @@
+Running: xsim.dir/udp_behav/xsimk.exe -simmode gui -wdb udp_behav.wdb -simrunnum 0 -socket 30675
+Design successfully loaded
+Design Loading Memory Usage: 6224 KB (Peak: 6224 KB)
+Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 6856 KB (Peak: 6856 KB)
+Simulation CPU Usage: 46 ms

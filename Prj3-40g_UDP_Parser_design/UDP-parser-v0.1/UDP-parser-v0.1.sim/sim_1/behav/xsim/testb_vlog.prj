@@ -1,0 +1,10 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../UDP-parser-v0.1.srcs/sources_1/new/udp.v" \
+"../../../../UDP-parser-v0.1.srcs/sim_1/new/testb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
