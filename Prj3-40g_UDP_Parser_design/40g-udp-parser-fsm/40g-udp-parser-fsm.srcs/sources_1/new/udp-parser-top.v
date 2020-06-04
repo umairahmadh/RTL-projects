@@ -23,6 +23,8 @@
 module udp_parser_top(  
     input clock,
     input reset,
+    input out_tready,
+    output reg in_tready,
     input [255:0] in_tdata,
     input in_tvalid,
     input in_tlast,
@@ -62,15 +64,18 @@ module udp_parser_top(
                     sum <= 0;
                     max <=0;
                     min <= 0;
+                    in_tready <=1;
                     state <= IDLE;  
                 end
             else begin
                //state<=nextState;
                out_debug1 <= state;
                out_debug2 <= output_buffer;
-               if(output_waiting) begin
+               if(output_waiting && out_tready) begin
+                out_tvalid = 1;
                 out_tdata <= output_buffer;
                 output_waiting <= 0;
+                output_buffer <= 0;
                end
                
                 
@@ -86,7 +91,8 @@ always @ (in_tdata)
                 sum = 0;
                 max = 0;
                 min = 0;
-                
+                out_tvalid = 0;
+                in_tready =1;
                 if(in_tvalid) begin  //&&in_tready  //receiving initial frame (Header frame)
                     state = FIRST_FRAME_RECEIVED;                            
                 end 
@@ -94,7 +100,8 @@ always @ (in_tdata)
             end
             
             FIRST_FRAME_RECEIVED: begin
-                if(in_tvalid) begin //&&in_tready       //recevigin second frame with OpCode
+            in_tready =1;
+                if(in_tvalid && in_tready) begin //&&in_tready       //recevigin second frame with OpCode
                     opCode = in_tdata[160 +: 16];
                     data_under_operation = in_tdata[0 +: 160];
                     max = data_under_operation [31:0];
@@ -137,8 +144,9 @@ always @ (in_tdata)
                  else state = FIRST_FRAME_RECEIVED;  
             end
             
-            SECOND_FRAME_RECEIVED: begin         
-                if(in_tvalid && ~in_tlast) begin //&&in_tready       //recevigin a frame that is full of data but not the last frame.
+            SECOND_FRAME_RECEIVED: begin   
+            in_tready =1;      
+                if(in_tvalid && ~in_tlast  && in_tready) begin //&&in_tready       //recevigin a frame that is full of data but not the last frame.
                     data_under_operation = in_tdata[0 +: 256];
                     case(opCode)
                             0: begin //sum
@@ -176,7 +184,7 @@ always @ (in_tdata)
                     state = SECOND_FRAME_RECEIVED;
                 end
                 
-                else if(in_tvalid && in_tlast) begin
+                else if(in_tvalid && in_tlast  && in_tready) begin
                     data_under_operation = in_tdata[0 +: 128];
                     case(opCode)
                             0: begin //sum
@@ -185,8 +193,9 @@ always @ (in_tdata)
                                         sum = sum + data_under_operation[i +: 32];
                                     end
                                     out_debug3 = sum;
-                                                            output_waiting =1;
-                        output_buffer = sum;   
+                                    output_waiting =1;
+                              //      out_tvalid =1;
+                                    output_buffer = sum;   
                                end
                             
                             1: begin
@@ -197,8 +206,9 @@ always @ (in_tdata)
                                         else max = max;
                                     end
                                     out_debug3 = max;
-                                                            output_waiting =1;
-                        output_buffer = max;   
+                                    output_waiting =1;
+                                    output_buffer = max;
+                              //      out_tvalid =1;   
                                end
                                
                             2: begin
@@ -210,8 +220,9 @@ always @ (in_tdata)
                                         else min = min;
                                     end
                                     out_debug3 = min;
-                                                            output_waiting =1;
-                        output_buffer = min;   
+                                    output_waiting =1;
+                                    output_buffer = min;  
+                               //     out_tvalid =1; 
                                end
 
                         endcase            
