@@ -1,0 +1,30 @@
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+det_out:x
+memory:xxxxxxxx
+det_out:0
+memory:xxxxxxaa
+memory:xxxxaaaa
+memory:xxaaaacf
+det_out:1
+memory:aaaacfff
+det_out:0
+memory:aacfffaa
+memory:cfffaaaa
+memory:ffaaaaaa
+memory:aaaaaacf
+det_out:1
+memory:aaaacfff
+det_out:0
+memory:aacfffff
+memory:cfffffcf
+memory:ffffcfff
+memory:ffcfffaa
+memory:cfffaaaa
+memory:cfffaaaa
+memory:ffaaaacf
+det_out:1
+memory:aaaacfff
+det_out:0
+memory:ffffffff
+$finish called at time : 400 ns : File "D:/Dev/ACCELR/Prj1 -1 - Sequence Detector/SQD_ShiftReg1/SQD_ShiftReg1.srcs/sim_1/new/testbench.v" Line 82

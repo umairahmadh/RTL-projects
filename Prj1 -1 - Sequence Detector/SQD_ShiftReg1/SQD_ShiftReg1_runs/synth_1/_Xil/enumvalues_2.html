@@ -1,0 +1,19 @@
+= OSC3_PLL3   [CPU System clock/3]
+;     CPUDIV = OSC2_PLL2   [CPU System clock/2]
+;     CPUDIV = OSC1        [No CPU System clock divide]
+;
+;   Two-Speed Start-up (Internal/External Oscillator Switchover) Control bit:
+;     IESO = OFF           Two-Speed Start-up disabled
+;     IESO = ON            Two-Speed Start-up enabled
+;
+;   Fail-Safe Clock Monitor Enable bit:
+;     FCMEN = OFF          Fail-Safe Clock Monitor disabled
+;     FCMEN = ON           Fail-Safe Clock Monitor enabled
+;
+;   Oscillator Selection bits:
+;     FOSC = INTOSC        Internal oscillator, port function on RA6 and RA7 
+;     FOSC = INTOSCO       Internal oscillator, CLKOUT on RA6 and port function on RA7
+;     FOSC = INTOSCPLL     INTOSC with PLL enabled, port function on RA6 and RA7, INTOSCPLL used by USB
+;     FOSC = INTOSCPLLO     INTOSC with PLL enabled,CLKOUT on RA6 and port function on RA7, INTOSCPLL used by USB
+;     FOSC = HS            HS oscillator, HS used by USB
+;     FOSC = HSPLL         HS oscillator,

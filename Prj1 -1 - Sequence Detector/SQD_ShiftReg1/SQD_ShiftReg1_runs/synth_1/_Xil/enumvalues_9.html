@@ -1,0 +1,24 @@
+
+                         # set file_name [lindex $file_string end]  
+                         # add_fileset_file "$dest_path_ca_v_only$individual_dir$file_name" SYSTEM_VERILOG_ENCRYPT PATH ${file} CADENCE_SPECIFIC
+                     # }
+     # }	
+	 	 
+
+
+# #### MENTOR files ####
+
+set sim_mentor_dir {"../components/mentor" "../uflex_ilk_regroup/mentor" "../uflex_ilk_mac/mentor" "../uflex_ilk_pcs/mentor" "../uflex_ilk_striper/mentor"  }
+
+set dest_path_me "../mentor"
+	
+foreach sim_me_dir1 $sim_mentor_dir {
+# add everything, including .sv in ilk_pcs
+      # replace ../ with / , so "../ilk_regroup/mentor" become "/ilk_regroup/mentor"
+      regsub ../ $sim_me_dir1 / tmp03
+      # replace /mentor with /, so "/ilk_regroup/mentor" become "/ilk_regroup"	  
+      regsub /mentor $tmp03 / individual_dir
+	  
+             set file_sim_me_lst [glob -- -path $sim_me_dir1/*.sv]
+                     foreach file ${file_sim_me_lst} {
+                         # split a string by / and store it in an ar

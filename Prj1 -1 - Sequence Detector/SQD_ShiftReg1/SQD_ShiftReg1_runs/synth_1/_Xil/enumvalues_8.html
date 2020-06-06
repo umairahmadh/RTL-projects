@@ -1,0 +1,22 @@
+et params]
+
+	 
+  set files_uflex_top "uflex_ilk_rx.sv uflex_ilk_tx.sv" 
+  
+  foreach svfile $files_uflex_top {
+     add_fileset_file /uflex_ilk_top/${svfile} SYSTEM_VERILOG PATH ../uflex_ilk_top/${svfile} 
+	 #SYNOPSYS_SPECIFIC
+     #add_fileset_file /mentor/uflex_ilk_top/${svfile} SYSTEM_VERILOG PATH ../uflex_ilk_top/mentor/${svfile} MENTOR_SPECIFIC
+     #add_fileset_file /cadence/uflex_ilk_top/${svfile} SYSTEM_VERILOG PATH ../uflex_ilk_top/cadence/${svfile} CADENCE_SPECIFIC
+  }
+
+  # add_fileset_file "../components/altera_std_synchronizer_nocut.v" VERILOG PATH "../../sopc_builder_ip/altera_avalon_jtag_phy/altera_std_synchronizer_nocut.v"
+  # add_fileset_file "../components/uflex_std_synchronizer_nocut.v" SYSTEM_VERILOG PATH "../components/uflex_std_synchronizer_nocut.sv"
+
+  
+}
+
+proc example_design_ver {outputName} {
+	set dev_family [get_parameter_value DEVICE_FAMILY]
+    set dev_family_S5 [check_device_family_equivalence $dev_family {"Stratix V"} ]
+    set dev_family_A5 [check_device_f

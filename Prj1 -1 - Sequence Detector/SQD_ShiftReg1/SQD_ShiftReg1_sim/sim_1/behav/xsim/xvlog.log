@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Dev/ACCELR/Prj1 -1 - Sequence Detector/SQD_ShiftReg1/SQD_ShiftReg1.srcs/sources_1/new/SQD_SR.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipo
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Dev/ACCELR/Prj1 -1 - Sequence Detector/SQD_ShiftReg1/SQD_ShiftReg1.srcs/sim_1/new/testbench.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module test

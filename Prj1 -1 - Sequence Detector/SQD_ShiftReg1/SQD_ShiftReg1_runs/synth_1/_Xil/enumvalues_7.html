@@ -1,0 +1,29 @@
+
+        file delete -force $qsysfile_generation_script
+    }
+
+    proc qsys_file_generate { filepath qsysname} {
+        set ip_generation_script ${filepath}/${qsysname}_gen.tcl
+        set fh [open ${ip_generation_script} w]
+        set qdir $::env(QUARTUS_ROOTDIR)
+
+        set cmd "${qdir}/sopc_builder/bin/qsys-script"
+        set cmd "${cmd} --pro"
+        set cmd "${cmd} --script=${filepath}/${qsysname}.tcl\n"
+        puts $fh "catch \{eval \[exec ${cmd}\]\} temp"
+        puts $fh "puts \$temp"
+        close $fh
+
+        set result [source ${ip_generation_script}]
+        file delete -force ${ip_generation_script}
+        puts "run_tclsh_script result:${result}"
+    }
+
+
+    proc local_qsysgenerate { filepath qsysname subdir} {
+        set ip_generation_script ${filepath}/${qsysname}_gen.tcl
+        set fh [open ${ip_generation_script} w]
+        set qdir $::env(QUARTUS_ROOTDIR)
+
+        set cmd "${qdir}/sopc_builder/bin/qsys-generate"
+        set cmd "${cmd} ${filepath}/${q

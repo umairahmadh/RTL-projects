@@ -1,0 +1,16 @@
+Randomising Test Vectors & Self Checking Testbenches
+https://www.youtube.com/watch?v=sevfOAeS4wI
+
+generating random numbers in verilog
+https://stackoverflow.com/questions/34011576/generating-random-numbers-in-verilog
+
+$display in Verilog and printf in C
+https://stackoverflow.com/questions/20803872/display-in-verilog-and-printf-in-c
+
+How to generate random number between 44 to 55 ?
+https://www.edaboard.com/showthread.php?151464-How-to-generate-random-number-between-44-to-55
+
+
+systemVerilog- how can I use $urandom/$random with range?
+temp = $urandom_range(maxVal,minVal);
+https://stackoverflow.com/questions/41166023/systemverilog-how-can-i-use-urandom-random-with-range
