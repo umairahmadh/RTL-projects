@@ -3,5 +3,10 @@
 Nov  6 2019
 21:57:16
 D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g-udp-parser-fsm/40g-udp-parser-fsm.sim/sim_1/behav/xsim/glbl.v,1573089660,verilog,,,,glbl,,,,,,,,
+<<<<<<< HEAD
 D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g-udp-parser-fsm/40g-udp-parser-fsm.srcs/sim_1/new/upd_parser_tb.v,1591376490,verilog,,,,upd_parser_tb,,,,,,,,
 D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g-udp-parser-fsm/40g-udp-parser-fsm.srcs/sources_1/new/udp-parser-top.v,1591376208,verilog,,D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g-udp-parser-fsm/40g-udp-parser-fsm.srcs/sim_1/new/upd_parser_tb.v,,udp_parser_top,,,,,,,,
+=======
+D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g-udp-parser-fsm/40g-udp-parser-fsm.srcs/sim_1/new/upd_parser_tb.v,1591291948,verilog,,,,upd_parser_tb,,,,,,,,
+D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g-udp-parser-fsm/40g-udp-parser-fsm.srcs/sources_1/new/udp-parser-top.v,1591291565,verilog,,D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g-udp-parser-fsm/40g-udp-parser-fsm.srcs/sim_1/new/upd_parser_tb.v,,udp_parser_top,,,,,,,,
+>>>>>>> 924285812bbfa5c47f6015c0188b195aa3c0da70
