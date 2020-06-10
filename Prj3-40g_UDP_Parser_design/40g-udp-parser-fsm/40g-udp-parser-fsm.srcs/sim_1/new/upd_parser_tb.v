@@ -36,8 +36,14 @@ module upd_parser_tb();
        wire [31:0] out_debug2;
        wire [31:0] out_debug3;
 
-    
-    
+    //------------------------------------------
+    // Adding some registers to store randomly generated stuffs
+    reg [255:0] frame1_headers;
+    reg [79:0] frame2_headers;
+    reg [15:0] frame2_opCode;
+    reg [31:0] integerData;
+    integer count;  //to count through generating integers
+    integer i;  //for packet loop
     
     
     
@@ -170,8 +176,35 @@ module upd_parser_tb();
             in_tdata = 256'h0000005400000023FFFFFFF100000456;
             in_tlast=1;
             #6.25;
-            reset=1;
-        end
+            //reset=1;
+            
+            
+            // staryting automatic random data transfer
+                /*  
+                reg [255:0] frame1_headers;
+                reg [79:0] frame2_headers;
+                reg [15:0] frame2_opCode;
+                reg [31:0] integerData;
+                integer count; 
+                */
+             // data packets
+                for (i=0; i<5 ; i= i+1) begin
+                   frame1_headers =  {$urandom,$urandom,$urandom,$urandom,$urandom,$urandom,$urandom,$urandom};
+                   frame2_headers =  {$urandom,$urandom,$urandom};
+                   frame2_opCode =  $urandom_range(8'h0,8'h4);;
+                   $display("frame1_headers = %h,frame2_headers = %h,frame2_opCode = %h ",frame1_headers,frame2_headers,frame2_opCode );
+                   #6.25;
+                
+                end
+                   
+                   
+                   
+                
+                
+                
+                end // for packet
+    
+        end //end initial block
      
 
 

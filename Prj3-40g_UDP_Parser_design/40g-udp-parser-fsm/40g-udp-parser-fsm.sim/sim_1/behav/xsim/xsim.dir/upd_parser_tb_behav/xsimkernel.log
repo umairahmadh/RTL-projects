@@ -2,3 +2,6 @@ Running: xsim.dir/upd_parser_tb_behav/xsimk.exe -simmode gui -wdb upd_parser_tb_
 Design successfully loaded
 Design Loading Memory Usage: 5792 KB (Peak: 5792 KB)
 Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 6464 KB (Peak: 6464 KB)
+Simulation CPU Usage: 46 ms

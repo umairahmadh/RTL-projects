@@ -1,0 +1,124 @@
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+ seed is set           1
+Frame1 Headers = a7049cb4471e82927303bcf41bead68c96c517de44495b961b15b299455ccdd9
+frame2 Headers = 46fe1b817ecc512049e9, OpCode = 0000 
+Integers: =        230
+Integers: =        447
+Integers: =        276
+Integers: =        398
+Integers: =        254
+Integers3: =        488
+Integers3: =        801
+Integers3: =        624
+Integers3: =        453
+Expected SUM: =      245152
+Actual SUM: =                                                                         245152
+PASS
+ seed is set           2
+Frame1 Headers = 4e0939914326f8057188b3b462aa7a2a6cb43b0fa84915ac74a41a24b3c2dedc
+frame2 Headers = 9a7d3add234f7824e6dd, OpCode = 0001 
+Integers: =        760
+Integers: =        441
+Integers: =        587
+Integers: =         97
+Integers: =        881
+Integers3: =        168
+Integers3: =        289
+Integers3: =        902
+Integers3: =        561
+Expected MAX: =         998
+Actual MAX: =                                                                            998
+PASS
+ seed is set           3
+Frame1 Headers = 750dd674354327549a4854008b13866f1a97149e7be38d14185903540f925bc4
+frame2 Headers = edb29a38c7ac5f2983a4, OpCode = 0000 
+Integers: =        609
+Integers: =        180
+Integers: =        538
+Integers: =        534
+Integers: =        439
+Integers3: =        897
+Integers3: =        117
+Integers3: =         38
+Integers3: =        301
+Expected SUM: =      254436
+Actual SUM: =                                                                         254436
+PASS
+ seed is set           4
+Frame1 Headers = 9c1273516c6690198de9bf6862a90e4a6e03cab674b409f77b27f22f7e85a4a5
+frame2 Headers = 4118b9946c22862e2093, OpCode = 0000 
+Integers: =        504
+Integers: =        603
+Integers: =        441
+Integers: =        212
+Integers: =        862
+Integers3: =         51
+Integers3: =        549
+Integers3: =        918
+Integers3: =        330
+Expected SUM: =      236750
+Actual SUM: =                                                                         236750
+PASS
+ seed is set           5
+Frame1 Headers = 0317102979b4f2e224439faf8fef5132b7c89b6f7d80c75c4f58a32d3fc92bcf
+frame2 Headers = 946718f01095ad32bd76, OpCode = 0001 
+Integers: =        394
+Integers: =       1000
+Integers: =        144
+Integers: =        254
+Integers: =        791
+Integers3: =        465
+Integers3: =        676
+Integers3: =        244
+Integers3: =        327
+Expected MAX: =        1000
+Actual MAX: =                                                                           1000
+PASS
+ seed is set           6
+Frame1 Headers = 2a1bad069bac2d49793cf61f196326a4a60617594ebf55dc185cb3b27c7cb971
+frame2 Headers = e7bb784bb4ff54375a53, OpCode = 0001 
+Integers: =        266
+Integers: =        623
+Integers: =        850
+Integers: =        201
+Integers: =        557
+Integers3: =        227
+Integers3: =        903
+Integers3: =        648
+Integers3: =         51
+Expected MAX: =        1000
+Actual MAX: =                                                                           1000
+PASS
+ seed is set           7
+Frame1 Headers = 512049e90e29ca3f3728c4c9607447e1a20aa3510789077263a38b46721714af
+frame2 Headers = 3ad997a7593f7b3bf707, OpCode = 0000 
+Integers: =        918
+Integers: =        940
+Integers: =        454
+Integers: =        577
+Integers: =        820
+Integers3: =        170
+Integers3: =        116
+Integers3: =        485
+Integers3: =        292
+Expected SUM: =      239708
+Actual SUM: =                                                                         239708
+PASS
+ seed is set           8
+Frame1 Headers = 7824e6dd63f547fd78ebe29a9d3909ea1d0947cb1a2462aa78b2355f910751c1
+frame2 Headers = 8e567702fdd162409408, OpCode = 0000 
+Integers: =         10
+Integers: =        404
+Integers: =        776
+Integers: =          7
+Integers: =        157
+Integers3: =        801
+Integers3: =        162
+Integers3: =        282
+Integers3: =        893
+Expected SUM: =      252143
+Actual SUM: =                                                                         252143
+PASS
+ seed is set           9
+Frame1 Headers = 5f2983a4529b95cd412410
