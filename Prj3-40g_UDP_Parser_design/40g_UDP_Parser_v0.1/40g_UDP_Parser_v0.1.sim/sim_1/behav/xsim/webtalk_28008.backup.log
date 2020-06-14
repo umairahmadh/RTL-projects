@@ -2,14 +2,13 @@
 # Webtalk v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Sun Jun  7 10:56:08 2020
-# Process ID: 17184
+# Start of session at: Thu Jun 11 16:46:47 2020
+# Process ID: 28008
 # Current directory: D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g_UDP_Parser_v0.1/40g_UDP_Parser_v0.1.sim/sim_1/behav/xsim
 # Command line: wbtcv.exe -mode batch -source D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g_UDP_Parser_v0.1/40g_UDP_Parser_v0.1.sim/sim_1/behav/xsim/xsim.dir/upd_parser_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g_UDP_Parser_v0.1/40g_UDP_Parser_v0.1.sim/sim_1/behav/xsim/webtalk.log
 # Journal file: D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g_UDP_Parser_v0.1/40g_UDP_Parser_v0.1.sim/sim_1/behav/xsim\webtalk.jou
 #-----------------------------------------------------------
 source D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g_UDP_Parser_v0.1/40g_UDP_Parser_v0.1.sim/sim_1/behav/xsim/xsim.dir/upd_parser_tb_behav/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-186] 'D:/Dev/ACCELR/Prj3-40g_UDP_Parser_design/40g_UDP_Parser_v0.1/40g_UDP_Parser_v0.1.sim/sim_1/behav/xsim/xsim.dir/upd_parser_tb_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Sun Jun  7 10:56:14 2020. For additional details about this file, please refer to the WebTalk help file at D:/Xilinx/Vivado/2019.2/doc/webtalk_introduction.html.
-webtalk_transmit: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 79.738 ; gain = 12.793
-INFO: [Common 17-206] Exiting Webtalk at Sun Jun  7 10:56:14 2020...
+webtalk_transmit: Time (s): cpu = 00:00:00 ; elapsed = 00:00:09 . Memory (MB): peak = 92.164 ; gain = 0.000
+INFO: [Common 17-206] Exiting Webtalk at Thu Jun 11 16:46:56 2020...

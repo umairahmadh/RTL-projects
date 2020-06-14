@@ -34,7 +34,7 @@ module upd_parser_tb();
        wire [255:0] out_tdata;
 //       wire [2:0] out_debug1;
 //       wire [31:0] out_debug2;
-//       wire [31:0] out_debug3;
+     wire [31:0] out_debug3;
 
     //------------------------------------------
     // Adding some registers to store randomly generated stuffs
@@ -45,7 +45,8 @@ module upd_parser_tb();
    // integer count;  //to count through generating integers
   //  integer i;  //for packet loop
   //  integer j;  //for integer loop
-    integer count, sum, max, min,i, j, seed;
+    integer tb_count, tb_sum, tb_max, tb_min,tb_i, tb_j, seed;
+    integer errorCount_sum, errorCount_max, errorCount_min ;
 
     
     
@@ -63,10 +64,12 @@ module upd_parser_tb();
                             .in_tvalid(in_tvalid),
                             .in_tlast(in_tlast),
                             .out_tvalid(out_tvalid),
-                            .out_tdata(out_tdata)
+                            .out_tdata(out_tdata),
+                            .out_debug3(out_debug3)
                             );
- /*                           
-                            .out_debug1(out_debug1),
+                         //   );
+                          
+/*                            .out_debug1(out_debug1),
                             .out_debug2(out_debug2),
                             .out_debug3(out_debug3)
                         );
@@ -139,46 +142,51 @@ module upd_parser_tb();
             // staryting automatic random data transfer
              // data packets
              reset =1;
+              errorCount_sum = 0; // starting to count errors in the output
+              errorCount_max = 0; // starting to count errors in the output
+              errorCount_min = 0; // starting to count errors in the output
              #6.25;
             reset=0;
             #6.25;
-                for (i=0; i<15 ; i= i+1) begin
+                for (tb_i=0; tb_i<30 ; tb_i= tb_i+1) begin
+               
+                
               //  $srandom;
-                    seed = i+1;
-                    $display(" seed is set %d",seed);
+                    seed = tb_i+1;
+                    $display("\n");
                  //   void'($urandom(seed));
                   //  $urandom(seed);
                   //  $urandom(seed);
-                   frame1_headers =  {$urandom(i+1),$urandom,$urandom,$urandom,$urandom,$urandom,$urandom,$urandom};
-                   frame2_headers =  {$urandom,$urandom,$urandom(i+7)};
+                   frame1_headers =  {$urandom(tb_i+1),$urandom,$urandom,$urandom,$urandom,$urandom,$urandom,$urandom};
+                   frame2_headers =  {$urandom,$urandom,$urandom(tb_i+71)};
                    frame2_opCode =  $urandom_range(8'h2,8'h0);
                    //frame2_opCode =  0 + $random % 2 ;   //$urandom_range(8'h2,8'h0);
                    integerData[255:0] = 0;
-                      $display("Frame1 Headers = %h",frame1_headers);
-                      $display("frame2 Headers = %h, OpCode = %h ",frame2_headers,frame2_opCode );
-                   sum = 0;
+                 //     $display("Frame1 Headers = %h",frame1_headers);
+                 //     $display("frame2 Headers = %h, OpCode = %h ",frame2_headers,frame2_opCode );
+                   tb_sum = 0;
 
-                   for (j=0; j<160; j = j+32) begin
+                   for (tb_j=0; tb_j<128; tb_j = tb_j+32) begin
                       //integerData[i +:32] = $urandom;
-                      integerData[j +:32] = $urandom_range(32'd1000,32'd0);
-                      $display("Integers: = %d", integerData[j +:32] );
+                      integerData[tb_j +:32] = $urandom_range(32'd1000,32'd0);
+                      $display("Integers: = %d", integerData[tb_j +:32] );
                       
                       
                       case(frame2_opCode)
                         0: begin
-                            sum = sum+ integerData[j +:32] ;
+                            tb_sum = tb_sum+ integerData[tb_j +:32] ;
                         end
                         
                         1: begin //max
-                            if (j==0) max = integerData[j +:32];
-                            else if( integerData[j +:32] > max) max =  integerData[j +:32];
-                            else max = max;
+                            if (tb_j==0) tb_max = integerData[tb_j +:32];
+                            else if( integerData[tb_j +:32] > tb_max) tb_max =  integerData[tb_j +:32];
+                            else tb_max = tb_max;
                         end                        
                         
                         2: begin //min
-                            if (j==0) min = integerData[j +:32];
-                            else if( integerData[j +:32] < min) min =  integerData[j +:32];
-                            else min = min;
+                            if (tb_j==0) tb_min = integerData[tb_j +:32];
+                            else if( integerData[tb_j +:32] < tb_min) tb_min =  integerData[tb_j +:32];
+                            else tb_min = tb_min;
                         end
                       
                       endcase
@@ -197,26 +205,26 @@ module upd_parser_tb();
                     in_tdata = {frame2_headers, frame2_opCode,integerData[159:0]} ;
                     
                    // third to the not_last frame
-                   for (count =0; count<60; count = count+1)begin
+                   for (tb_count =0; tb_count<60; tb_count = tb_count+1)begin
                                        
-                    for (j=0; j<256; j = j+32) begin
+                    for (tb_j=0; tb_j<=224; tb_j = tb_j+32) begin
                        //integerData[i +:32] = $urandom;
-                      integerData[j +:32] = $urandom_range(32'd1000,32'd0000);
-                     // $display("Integers2: = %d", integerData[j +:32] );
+                      integerData[tb_j +:32] = $urandom_range(32'd1000,32'd0000);
+                      $display("Integers2: = %d", integerData[tb_j +:32] );
                       
                       case(frame2_opCode)
                         0: begin
-                            sum = sum+ integerData[j +:32] ;
+                            tb_sum = tb_sum+ integerData[tb_j +:32] ;
                         end
                         
                         1: begin //max
-                            if( integerData[j +:32] > max) max =  integerData[j +:32];
-                            else max = max;
+                            if( integerData[tb_j +:32] > tb_max) tb_max =  integerData[tb_j +:32];
+                            else tb_max = tb_max;
                         end                        
                         
                         2: begin //min
-                            if( integerData[j +:32] < min) min =  integerData[j +:32];
-                            else min = min;
+                            if( integerData[tb_j +:32] < tb_min) tb_min =  integerData[tb_j +:32];
+                            else tb_min = tb_min;
                         end
                       
                       endcase
@@ -228,23 +236,23 @@ module upd_parser_tb();
                    
                    //last frame
                                       
-                    for (j=0; j<128; j = j+32) begin
+                    for (tb_j=0; tb_j<=96; tb_j = tb_j+32) begin
                       //integerData[i +:32] = $urandom;
-                      integerData[j +:32] = $urandom_range(32'd1000,32'd0000);
-                      $display("Integers3: = %d", integerData[j +:32] );
+                      integerData[tb_j +:32] = $urandom_range(32'd1000,32'd0000);
+                     $display("Integers3: = %d", integerData[tb_j +:32] );
                       case(frame2_opCode)
                         0: begin
-                            sum = sum+ integerData[j +:32] ;
+                            tb_sum = tb_sum+ integerData[tb_j +:32] ;
                         end
                         
                         1: begin //max
-                            if( integerData[j +:32] > max) max =  integerData[j +:32];
-                            else max = max;
+                            if( integerData[tb_j +:32] > tb_max) tb_max =  integerData[tb_j +:32];
+                            else tb_max = tb_max;
                         end                        
                         
                         2: begin //min
-                            if( integerData[j +:32] < min) min =  integerData[j +:32];
-                            else min = min;
+                            if( integerData[tb_j +:32] < tb_min) tb_min =  integerData[tb_j +:32];
+                            else tb_min = tb_min;
                         end
                       
                       endcase
@@ -262,21 +270,33 @@ module upd_parser_tb();
                     #6.25;
                        case(frame2_opCode)
                         0: begin
-                            $display("Expected SUM: = %d", sum );
+                            $display("Expected SUM: = %d", tb_sum );
                             $display("Actual SUM: = %d", out_tdata );
-                            if(out_tdata == sum) $display("PASS"); else $display(" FAIL ");
+                            if(out_tdata == tb_sum) $display("PASS"); 
+                            else begin
+                             $display(" FAIL ");
+                             errorCount_sum = errorCount_sum+1;
+                             end
                         end
                         
                         1: begin //max
-                            $display("Expected MAX: = %d", max );
+                            $display("Expected MAX: = %d", tb_max );
                             $display("Actual MAX: = %d", out_tdata );
-                            if(out_tdata == max) $display("PASS"); else $display(" FAIL ");
+                            if(out_tdata == tb_max) $display("PASS"); 
+                            else begin
+                             $display(" FAIL ");
+                             errorCount_max = errorCount_max+1;
+                             end
                         end                        
                         
                         2: begin //min
-                            $display("Expected MIN: = %d", min );
+                            $display("Expected MIN: = %d", tb_min );
                             $display("Actual MIN: = %d", out_tdata );
-                            if(out_tdata == min) $display("PASS"); else $display(" FAIL ");
+                            if(out_tdata == tb_min) $display("PASS"); 
+                            else begin
+                             $display(" FAIL ");
+                             errorCount_min = errorCount_min+1;
+                             end
                         end
                       
                       endcase
@@ -288,8 +308,13 @@ module upd_parser_tb();
                    
 
                 end // for packet
-                
-                end //enf of initial block
+                if (errorCount_sum > 0 || errorCount_max > 0 || errorCount_min > 0 ) begin
+                    $display ("FAILED with %d Errors", errorCount_sum+errorCount_max+errorCount_min);
+                    $display ("Errors in SUM: %d", errorCount_sum);
+                    $display ("Errors in MAX: %d", errorCount_max);
+                    $display ("Errors in MIN: %d", errorCount_min);
+                end
+    end //enf of initial block
 //  */  
 
      

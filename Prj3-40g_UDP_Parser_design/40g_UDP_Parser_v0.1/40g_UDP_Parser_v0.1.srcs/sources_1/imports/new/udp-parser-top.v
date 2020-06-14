@@ -29,10 +29,10 @@ module udp_parser_top(
     input in_tvalid,
     input in_tlast,
     output reg out_tvalid,
-    output reg [255:0] out_tdata
+    output reg [255:0] out_tdata,
 //    output reg [2:0] out_debug1,
 //    output reg [31:0] out_debug2,
-//    output reg [31:0] out_debug3
+    output reg [31:0] out_debug3
     //input out_tready
     );
     
@@ -60,7 +60,7 @@ module udp_parser_top(
             if(reset)
                 begin
                     data_under_operation <= 0;
-                    output_buffer <=0;
+                    output_buffer        <= 0;
                     opCode <= 0;
                     sum <= 0;
                     max <=0;
@@ -88,7 +88,7 @@ module udp_parser_top(
                
                end
     */           
-               case(state)
+           case(state)
             IDLE: begin         //
 
                 out_tvalid <= 0;
@@ -101,46 +101,48 @@ module udp_parser_top(
             end
             
             FIRST_FRAME_RECEIVED: begin
-            in_tready =1;
-                if(in_tvalid && in_tready) begin //&&in_tready       //recevigin second frame with OpCode
-//                                        sum <= 0;
-//                    max <= 0;
-//                    min <= 0;
-            sum <=0;
-            max <= data_under_operation [31:0];
-            min <= data_under_operation [31:0];
-                    opCode <= in_tdata[160 +: 16];
-                    data_under_operation <= in_tdata[0 +: 160];
+                in_tready =1;
+                    if(in_tvalid && in_tready) begin //&&in_tready       //recevigin second frame with OpCode
+    //                                        sum <= 0;
+    //                    max <= 0;
 
-                    doOperation <= ~doOperation;      
-                    state <= SECOND_FRAME_RECEIVED;
-                    end
-                 else state <= FIRST_FRAME_RECEIVED;  
+                        sum <=0;
+//                        max <= data_under_operation [31:0];
+//                        min <= data_under_operation [31:0];                    
+                        max <= 0;
+                        min <= 100000;
+                        opCode <= in_tdata[160 +: 16];
+                        data_under_operation <= in_tdata[0 +: 160];
+    
+                        doOperation <= ~doOperation;      
+                        state <= SECOND_FRAME_RECEIVED;
+                        end
+                     else state <= FIRST_FRAME_RECEIVED;  
             end
             
             SECOND_FRAME_RECEIVED: begin   
-            in_tready <=1;      
-                if(in_tvalid && ~in_tlast && in_tready) begin //&&in_tready       //recevigin a frame that is full of data but not the last frame.
-                    data_under_operation <= in_tdata[0 +: 256];
-                     doOperation <= ~doOperation;                                     
-                    state <= SECOND_FRAME_RECEIVED;
-                end
-                
-                else if(in_tvalid && in_tlast  && in_tready) begin
-                    data_under_operation <= in_tdata[0 +: 128];
-                    state <= FINAL;
-                
-                end
-              else state <= SECOND_FRAME_RECEIVED;
-              
-              end
-              
-              FINAL: begin 
-              doOperation <= ~doOperation;
-              if(in_tvalid && in_tready) state <= FIRST_FRAME_RECEIVED;
-              else state <= IDLE;
-              end
-        endcase
+                in_tready <=1;      
+                    if(in_tvalid && ~in_tlast && in_tready) begin //&&in_tready       //recevigin a frame that is full of data but not the last frame.
+                        data_under_operation <= in_tdata[0 +: 256];
+                         doOperation <= ~doOperation;                                     
+                        state <= SECOND_FRAME_RECEIVED;
+                    end
+                    
+                    else if(in_tvalid && in_tlast  && in_tready) begin
+                        data_under_operation <= in_tdata[0 +: 128];
+                        state <= FINAL;
+                        doOperation <= ~doOperation;
+                    end
+                  else state <= SECOND_FRAME_RECEIVED;
+                  
+                  end
+                  
+            FINAL: begin 
+                  doOperation <= ~doOperation;
+                  if(in_tvalid && in_tready) state <= FIRST_FRAME_RECEIVED;
+                  else state <= IDLE;
+                  end
+         endcase
         end
            
         
@@ -156,7 +158,7 @@ always @ (doOperation, state)
 //            min = data_under_operation [31:0];
                 case(opCode)
                     0: begin //sum
-                        for (i=0; i<160; i = i+32)
+                        for (i=0; i<=128; i = i+32)
                             begin
                                 sum = sum + data_under_operation[i +: 32];
                             end
@@ -165,7 +167,7 @@ always @ (doOperation, state)
                     
                     1: begin
                        //do things
-                       for (i=0; i<160; i = i+32)
+                       for (i=0; i<=128; i = i+32)
                             begin
                                 if(data_under_operation[i +: 32]>max) max = data_under_operation[i +: 32];
                                 else max = max;
@@ -177,7 +179,7 @@ always @ (doOperation, state)
                     2: begin
                        //do things
                        //do things
-                       for (i=0; i<160; i = i+32)
+                       for (i=0; i<=128; i = i+32)
                             begin
                                 if(data_under_operation[i +: 32]<min) min = data_under_operation[i +: 32];
                                 else min = min;
@@ -192,7 +194,7 @@ always @ (doOperation, state)
         SECOND_FRAME_RECEIVED: begin  
             case(opCode)
                     0: begin //sum
-                        for (i=0; i<256; i = i+32)
+                        for (i=0; i<=224; i = i+32)
                             begin
                                 sum = sum + data_under_operation[i +: 32];
                             end
@@ -202,7 +204,7 @@ always @ (doOperation, state)
                     
                     1: begin
                        //do things
-                       for (i=0; i<256; i = i+32)
+                       for (i=0; i<=224; i = i+32)
                             begin
                                 if(data_under_operation[i +: 32]>max) max = data_under_operation[i +: 32];
                                 else max = max;
@@ -213,7 +215,7 @@ always @ (doOperation, state)
                     2: begin
                        //do things
                        //do things
-                       for (i=0; i<256; i = i+32)
+                       for (i=0; i<=224; i = i+32)
                             begin
                                 if(data_under_operation[i +: 32]<min) min = data_under_operation[i +: 32];
                                 else min = min;
@@ -227,7 +229,7 @@ always @ (doOperation, state)
        FINAL: begin
             case(opCode)
                 0: begin //sum
-                        for (i=0; i<128; i = i+32)
+                        for (i=0; i<=96; i = i+32)
                             begin
                                 sum = sum + data_under_operation[i +: 32];
                             end
@@ -239,7 +241,7 @@ always @ (doOperation, state)
                     
                     1: begin
                        //do things
-                       for (i=0; i<128; i = i+32)
+                       for (i=0; i<=96; i = i+32)
                             begin
                                 if(data_under_operation[i +: 32]>max) max = data_under_operation[i +: 32];
                                 else max = max;
@@ -253,7 +255,7 @@ always @ (doOperation, state)
                     2: begin
                        //do things
                        //do things
-                       for (i=0; i<128; i = i+32)
+                       for (i=0; i<=96; i = i+32)
                             begin
                                 if(data_under_operation[i +: 32]<min) min = data_under_operation[i +: 32];
                                 else min = min;
@@ -266,7 +268,7 @@ always @ (doOperation, state)
 
                 endcase   
                 
-                               // transmitting the output buffer to the out_tdata port
+// transmitting the output buffer to the out_tdata port
                if(output_waiting && out_tready) begin
                 out_tvalid = 1;
                 out_tdata = output_buffer;
@@ -277,5 +279,7 @@ always @ (doOperation, state)
     endcase
 end
 
-
+always @ (min) begin
+    out_debug3 = min;
+end
 endmodule
